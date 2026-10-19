@@ -12,6 +12,19 @@ The Docker image includes Vulkan and Mesa's AMD drivers.
 The host needs a working GPU kernel driver and `/dev/dri`. The image targets
 Linux x86-64 CPUs with AVX2, such as the Ryzen 5 5600GE.
 
+## Published Docker image
+
+Pushes to `main` build and publish the Linux x86-64 image to GitHub Container
+Registry with two tags:
+
+- `ghcr.io/cippaciong/transcribe-server:latest`
+- `ghcr.io/cippaciong/transcribe-server:<full-commit-sha>`
+
+The **Build and publish Docker image** workflow can also be run manually on
+`main`. It uses the built-in `GITHUB_TOKEN`; no additional secrets are needed.
+After the first publication, change the package visibility to **Public** in its
+GitHub package settings to allow anonymous pulls.
+
 ## Run with Docker Compose
 
 Create the model directory:
