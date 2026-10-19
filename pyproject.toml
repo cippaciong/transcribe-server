@@ -1,0 +1,29 @@
+[project]
+name = "transcribe-server"
+version = "0.1.0"
+description = "An HTTP transcription server powered by transcribe.cpp"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "python-multipart>=0.0.20,<1",
+  "numpy>=2,<3",
+  "transcribe-cpp",
+]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "httpx>=0.28,<1", "ruff>=0.11,<1"]
+
+[tool.uv]
+package = false
+# Native library is built from the same revision in Docker, not fetched from PyPI.
+override-dependencies = ["transcribe-cpp-native; python_version < '0'"]
+
+[tool.uv.sources]
+transcribe-cpp = { git = "https://github.com/handy-computer/transcribe.cpp", rev = "1dc22facfc931e2f8adb43924b0e38b9c46f83c7", subdirectory = "bindings/python" }
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100

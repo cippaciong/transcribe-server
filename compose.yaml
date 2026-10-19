@@ -1,0 +1,17 @@
+services:
+  transcribe-server:
+    build: .
+    image: transcribe-server:local
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      MODEL_PATH: /models/parakeet-tdt-0.6b-v3-Q8_0.gguf
+      BACKEND: vulkan
+      API_KEY: ${API_KEY:-}
+    volumes:
+      - ./volumes/models:/models:ro
+    devices:
+      - /dev/dri:/dev/dri
+    group_add:
+      - "${RENDER_GID:?Set RENDER_GID to the group ID of /dev/dri/renderD128}"
