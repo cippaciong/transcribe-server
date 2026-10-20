@@ -1,6 +1,6 @@
 [project]
 name = "transcribe-server"
-version = "0.1.1"
+version = "0.1.2"
 description = "An HTTP transcription server powered by transcribe.cpp"
 requires-python = ">=3.12"
 dependencies = [
